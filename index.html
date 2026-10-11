@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10121b">
+  <title>FFA PvP Tier List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-glow glow-one"></div><div class="bg-glow glow-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">⚔</span><span><b>FFA</b><small>PVP TIER LIST</small></span></a>
+    <nav><a class="active" href="#tiers">Тир-лист</a><a href="#about">О проекте</a></nav>
+    <button id="adminOpen" class="btn btn-ghost">⚙ Админ</button>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> BEDROCK • FREE FOR ALL</div>
+        <h1>КТО <span>СИЛЬНЕЕ?</span></h1>
+        <p>Рейтинг лучших бойцов сервера. Найди свой ник, оцени соперников и поднимайся на вершину.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#tiers">Смотреть тир-лист <span>↘</span></a><span class="updated" id="updated">Обновлено: —</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="ring ring-a"></div><div class="ring ring-b"></div><div class="sword">⚔</div><div class="rank-chip chip-s">HT1</div><div class="rank-chip chip-a">LT1</div><div class="rank-chip chip-ffa">FFA</div></div>
+    </section>
+    <section class="stats">
+      <div class="stat"><span>ИГРОКОВ В РЕЙТИНГЕ</span><b id="playerCount">0</b><small>всего бойцов</small></div>
+      <div class="stat"><span>ТОПОВЫЙ ТИР</span><b class="purple">HT1</b><small>элита сервера</small></div>
+      <div class="stat"><span>РЕЖИМ</span><b>FFA</b><small>каждый сам за себя</small></div>
+    </section>
+    <section class="leaderboard-section" aria-labelledby="leaderboardTitle">
+      <div class="section-head"><div><div class="eyebrow">ЛУЧШИЕ ИГРОКИ</div><h2 id="leaderboardTitle">ТОП 4 BEDROCK PVP</h2></div></div>
+      <div id="leaderboard" class="leaderboard-grid"></div>
+    </section>
+    <section id="tiers" class="tier-section">
+      <div class="section-head"><div><div class="eyebrow">РЕЙТИНГ СООБЩЕСТВА</div><h2>Тир-лист игроков</h2></div><div class="filters"><input id="search" type="search" placeholder="🔎 Найти игрока..." aria-label="Найти игрока"><select id="sort" aria-label="Сортировка"><option value="tier">По тиру</option><option value="name">По нику</option></select></div></div>
+      <div id="tierList" class="tier-list"></div>
+      <p id="empty" class="empty hidden">Игроки не найдены. Попробуй другой ник.</p>
+      <p class="note">Аватары топ-игроков добавлены вручную. Остальные игроки используют скин по нику.</p>
+    </section>
+    <section id="about" class="about"><div><div class="eyebrow">О ПРОЕКТЕ</div><h2>Честная сила. Чистый скилл.</h2></div><p>Это фанатский рейтинг PvP-игроков Minecraft Bedrock. Тиры выставляет администратор вручную. Рейтинг не связан официально с Mojang или Microsoft.</p></section>
+    <footer><span>⚔ FFA PvP Tier List</span><span>Сделано для сообщества Minecraft Bedrock</span></footer>
+  </main>
+
+  <div id="adminModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+    <div class="modal-backdrop" data-close="1"></div>
+    <div class="modal-card">
+      <button class="modal-x" id="adminClose" aria-label="Закрыть">×</button>
+      <div class="eyebrow">ТОЛЬКО ДЛЯ АДМИНИСТРАТОРА</div><h2 id="adminTitle">Управление тир-листом</h2>
+      <p class="muted">В демо-версии изменения сохраняются только в этом браузере. Для публичного защищённого редактирования нужен серверный вход.</p>
+      <form id="loginForm" class="form-stack">
+        <label>Пароль администратора <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Введите пароль"></label>
+        <button class="btn btn-primary" type="submit">Войти</button>
+        <p id="loginError" class="error"></p>
+      </form>
+      <div id="editor" class="hidden">
+        <div class="editor-grid">
+          <label>Ник игрока<input id="playerName" maxlength="16" placeholder="Например, Steve" required></label>
+          <label>Тир<select id="playerTier"><option>HT1</option><option>LT1</option><option>HT2</option><option>LT2</option><option>HT3</option><option>LT3</option><option>HT4</option><option>LT4</option><option>HT5</option><option>LT5</option></select></label>
+        </div>
+        <label>Заметка (необязательно)<input id="playerNote" maxlength="60" placeholder="Например, лучший в комбо"></label>
+        <div class="editor-actions"><button id="savePlayer" class="btn btn-primary">＋ Добавить игрока</button><button id="exportData" class="btn btn-ghost" type="button">Экспорт JSON</button><label class="btn btn-ghost import-btn">Импорт JSON<input id="importData" type="file" accept="application/json"></label></div>
+        <div id="manageList" class="manage-list"></div>
+        <button id="logout" class="btn btn-ghost full">Выйти из админки</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
