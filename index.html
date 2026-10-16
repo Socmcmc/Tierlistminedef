@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10121b">
+  <title>FFA PvP Tier List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-glow glow-one"></div><div class="bg-glow glow-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">⚔</span><span><b>FFA</b><small>PVP TIER LIST</small></span></a>
+    <nav><a class="active" href="#tiers">Тир-лист</a><a href="#about">О проекте</a></nav>
+    <button id="adminOpen" class="btn btn-ghost">⚙ Админ</button>
+  </header>
+  <main>
+    <section id="tiers" class="tier-section">
+      <div class="section-head"><div><div class="eyebrow">MINEDEF • BEDROCK PVP</div><h1>Tier List</h1><p class="subtitle">Рейтинг игроков по сумме очков за каждый режим</p></div><div class="filters"><input id="search" type="search" placeholder="🔎 Найти игрока..." aria-label="Найти игрока"><select id="sort" aria-label="Сортировка"><option value="points">По очкам</option><option value="name">По нику</option></select></div></div>
+      <div id="tierList" class="tier-list"></div>
+      <p id="empty" class="empty hidden">Игроки не найдены. Попробуй другой ник.</p>
+      <section class="kit-legend" aria-labelledby="kitLegendTitle">
+        <div class="kit-legend-head"><div><span class="eyebrow">ИГРОВЫЕ РЕЖИМЫ</span><h2 id="kitLegendTitle">Что означают значки?</h2></div><p>Наведите или нажмите на значок, чтобы увидеть название кита.</p></div>
+        <div class="kit-grid">
+          <div class="kit-card" title="Sword — бой на мечах"><span class="kit-symbol mode-sword">⚔</span><div><strong>Sword</strong><small>Мечи</small></div></div>
+          <div class="kit-card" title="Gapple — бой с золотыми яблоками"><span class="kit-symbol mode-gapple">●</span><div><strong>Gapple</strong><small>Золотые яблоки</small></div></div>
+          <div class="kit-card" title="Npot — бой с зельями"><span class="kit-symbol mode-npot">◉</span><div><strong>Npot</strong><small>Зелья</small></div></div>
+          <div class="kit-card" title="Axe — бой на топорах"><span class="kit-symbol mode-axe">◆</span><div><strong>Axe</strong><small>Топоры</small></div></div>
+          <div class="kit-card" title="Mace — бой с булавой"><span class="kit-symbol mode-mace">✦</span><div><strong>Mace</strong><small>Булава</small></div></div>
+          <div class="kit-card" title="UHC — режим UHC"><span class="kit-symbol mode-uhc">◈</span><div><strong>UHC</strong><small>UHC PvP</small></div></div>
+        </div>
+      </section>
+      <section class="rank-legend" aria-labelledby="rankLegendTitle">
+        <div class="kit-legend-head"><div><span class="eyebrow">MINEDЕF COMBAT RANKS</span><h2 id="rankLegendTitle">Ранги по очкам</h2></div><p>Ранг каждого игрока рассчитывается автоматически по сумме очков.</p></div>
+        <div class="rank-grid">
+          <div class="rank-card rank-rookie"><strong>Combat Rookie</strong><span>0–4 pts</span></div>
+          <div class="rank-card rank-cadet"><strong>Combat Cadet</strong><span>5–9 pts</span></div>
+          <div class="rank-card rank-fighter"><strong>Combat Fighter</strong><span>10–14 pts</span></div>
+          <div class="rank-card rank-ace"><strong>Combat Ace</strong><span>15–19 pts</span></div>
+          <div class="rank-card rank-elite"><strong>Combat Elite</strong><span>20–29 pts</span></div>
+          <div class="rank-card rank-master"><strong>Combat Master</strong><span>30–45 pts</span></div>
+          <div class="rank-card rank-grandmaster"><strong>Combat GrandMaster</strong><span>46–60 pts</span></div>
+          <div class="rank-card rank-legend"><strong>Combat Legend</strong><span>61–100 pts</span></div>
+        </div>
+      </section>
+      <p class="note">Очки суммируются автоматически: HT1 = 10 pts, LT1 = 9 pts, HT2 = 8 pts, LT2 = 7 pts, HT3 = 6 pts, LT3 = 5 pts, HT4 = 4 pts, LT4 = 3 pts, HT5 = 2 pts, LT5 = 1 pt.</p>
+    </section>
+    <footer id="about">
+    <span>⚔ <b>MineDef</b> • Bedrock PvP Tier List</span>
+    <span class="social-links">
+      <a href="https://www.tiktok.com/@minedefmc" target="_blank" rel="noopener noreferrer" aria-label="TikTok MineDef">♪ TikTok <b>@minedefmc</b></a>
+      <a href="https://t.me/mindeftier" target="_blank" rel="noopener noreferrer" aria-label="Telegram MineDef Tier">➤ Telegram <b>@mindeftier</b></a>
+    </span>
+  </footer>
+  </main>
+
+  <div id="adminModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+    <div class="modal-backdrop" data-close="1"></div>
+    <div class="modal-card">
+      <button class="modal-x" id="adminClose" aria-label="Закрыть">×</button>
+      <div class="eyebrow">ТОЛЬКО ДЛЯ АДМИНИСТРАТОРА</div><h2 id="adminTitle">Управление тир-листом</h2>
+      <p class="muted">В демо-версии изменения сохраняются только в этом браузере. Для публичного защищённого редактирования нужен серверный вход.</p>
+      <form id="loginForm" class="form-stack">
+        <label>Пароль администратора <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Введите пароль"></label>
+        <button class="btn btn-primary" type="submit">Войти</button>
+        <p id="loginError" class="error"></p>
+      </form>
+      <div id="editor" class="hidden">
+        <div class="editor-grid">
+          <label>Ник игрока<input id="playerName" maxlength="16" placeholder="Например, Steve" required></label>
+          <label>Тир<select id="playerTier"><option>HT1</option><option>LT1</option><option>HT2</option><option>LT2</option><option>HT3</option><option>LT3</option><option>HT4</option><option>LT4</option><option>HT5</option><option>LT5</option></select></label>
+        </div>
+        <label>Заметка (необязательно)<input id="playerNote" maxlength="60" placeholder="Например, лучший в комбо"></label>
+        <div class="editor-actions"><button id="savePlayer" class="btn btn-primary">＋ Добавить игрока</button><button id="exportData" class="btn btn-ghost" type="button">Экспорт JSON</button><label class="btn btn-ghost import-btn">Импорт JSON<input id="importData" type="file" accept="application/json"></label></div>
+        <div id="manageList" class="manage-list"></div>
+        <button id="logout" class="btn btn-ghost full">Выйти из админки</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
